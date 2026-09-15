@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <header id="header">
+        <div id="resp">
+            <div id="caixa-imagem-titulo-header">
+                <img src="" alt="foto grande da logo">
+            </div>
+
+            <div id="caixa-texto-titulo-header" >
+                <h1 id="titulo-inicial-branco">STREETWEAR</h1>
+                <!-- <h1 id="titulo-inicial-cinza">WITHOUT</BR> LIMITS.</h1> -->
+
+                <p>roupas masculinas para quem transforma estilo em indentidade</p>
+            </div>
+        </div>
+
+        <div>
+            <a href="login.html"><button type="submit" class="botao-header">Fazer Login</button></a>
+        </div>
+    </header>
+
+<div id="main">
+    <main> 
+        
+        <nav id="navbar">
+
+            <div>
+                <h3 class="Gallery">Gallery</h3>
+                <p class="luxe">luxe</p>
+            </div>
+
+
+            <a href="#header" class="nav-link">
+                Inicio
+            </a>
+
+            <a href="#galeria" class="nav-link">
+                Galeria
+            </a>
+
+            <div id="caixa-filtros">
+                <p class="titulo-filtros">Filtrar por preço</p>
+                <button class="botao-filtro" data-filtro="100" onclick="filtrarPreco(100)">Até R$ 100</button>
+                <button class="botao-filtro" data-filtro="300" onclick="filtrarPreco(300)">Até R$ 300</button>
+                <button class="botao-filtro" data-filtro="500" onclick="filtrarPreco(500)">Até R$ 500</button>
+                <button class="botao-filtro" data-filtro="todos" onclick="filtrarPreco('todos')">Ver todos</button>
+            </div>
+
+            <a href="#Minha-Area" class="nav-link">
+                Minha Area
+            </a>
+
+             <a href="#Entre-Contato" class="nav-link">
+                Entre em Contato
+            </a>
+
+             <a href="#Sobre-Nos" class="nav-link">
+                Sobre Nós
+            </a>
+            
+        </nav>
+
+        <div id="conteudo">
+
+            <section id="galeria">
+
+                <h2 class="subtitulo">Gallery</h2>
+                <p>Peças de alta costura</p>
+
+                <div>
+                </div>
+
+                <div id="produtos">
+                    <div class="caixa-produto" data-preco="100" data-aos="fade-up" data-aos-delay="100">
+                        <div> <img src="fotos/produto.jpg" alt="" class="fotos"> </div>
+                        <div class="caixa-nome-preço">
+                            <h4 class="nome-produto">T-shirt: Gallery dept</h4> 
+                            <h4 class="preco-produto">R$ 100,00</h4>
+                        </div>
+                        <p class="texto-informativo">design</p>
+                    </div>
+
+                    <div class="caixa-produto" data-preco="200" data-aos="fade-up" data-aos-delay="200">
+                        <div> <img src="fotos/mandar isaque.webp" alt="" class="fotos"> </div>
+                        <div class="caixa-nome-preço">
+                            <h4 class="nome-produto">T-shirt: Gallery dept</h4> 
+                            <h4 class="preco-produto">R$ 200,00</h4>
+                        </div>
+                        <p class="texto-informativo">design</p>
+                    </div>
+
+                    <div class="caixa-produto" data-preco="200" data-aos="fade-up" data-aos-delay="300">
+                        <div> <img src="fotos/mandar pro isaque.webp" alt="" class="fotos"> </div>
+                        <div class="caixa-nome-preço">
+                            <h4 class="nome-produto">T-shirt: Gallery dept</h4> 
+                            <h4 class="preco-produto">R$ 200,00</h4>
+                        </div>
+                        <p class="texto-informativo">design</p>
+                    </div>
+
+                    <div class="caixa-produto" data-preco="500" data-aos="fade-up" data-aos-delay="300">
+                        <div> <img src="fotos/izazaqui.png" alt="" class="fotos"> </div>
+                        <div class="caixa-nome-preço">
+                            <h4 class="nome-produto">T-shirt: Gallery dept</h4> 
+                            <h4 class="preco-produto">R$ 500,00</h4>
+                        </div>
+                        <p class="texto-informativo">design</p>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    
+    </main>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
