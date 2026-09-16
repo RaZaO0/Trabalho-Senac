@@ -2,21 +2,26 @@ if (typeof AOS !== "undefined") {
     AOS.init();
 }
 
-gsap.registerPlugin(ScrollTrigger)
+if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
 
-gsap.to("#titulo-inicial-branco", {
-    scale: 2,
-    opacity: 0,
-    ease: "none",
+    if (document.querySelector("#titulo-inicial-branco")) {
+        gsap.to("#titulo-inicial-branco", {
+            scale: 2,
+            opacity: 0,
+            ease: "none",
 
-    scrollTrigger: {
-        trigger: "#caixa-texto-titulo-header",
-        start: "top top",
-        end: "+=1000",
-        scrub: 1,
-        pin: true
+            scrollTrigger: {
+                trigger: "#caixa-texto-titulo-header",
+                start: "top top",
+                end: "+=1000",
+                scrub: 1,
+                pin: true
+            }
+        });
     }
-});
+}
+
 
 
 
