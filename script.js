@@ -1,5 +1,18 @@
 if (typeof AOS !== "undefined") {
-    AOS.init();
+    const initAos = () => {
+        AOS.init({
+            duration: 900,
+            once: false,
+            offset: 80
+        });
+        AOS.refreshHard();
+    };
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initAos);
+    } else {
+        initAos();
+    }
 }
 
 if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
@@ -22,9 +35,6 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     }
 }
 
-
-
-
 class Produtos {
     constructor(id, nome, categoria, preco){
     this.id = id;
@@ -34,12 +44,11 @@ class Produtos {
     }
 }
  
- 
 class Pessoas {
     constructor(id, nome, gmail, senha ){
-        this.id = id,
-        this.nome = nome,
-        this.gmail = gmail,
+        this.id = id;
+        this.nome = nome;
+        this.gmail = gmail;
         this.senha = senha
     }
 }
@@ -141,11 +150,6 @@ formProdutos.addEventListener("submit", (e) => {
 }
  
  
- 
- 
- 
- 
- 
 const caixaLogin = document.getElementById("caixa-login");
 const painelAdm = document.getElementById("PainelAdmin");
 
@@ -187,4 +191,7 @@ const filtrarPreco = (precoMax) => {
     dentroDoFiltro.forEach((produto) => produto.style.display = "block");
     foraDoFiltro.forEach((produto) => produto.style.display = "none");
 }
+
+
+
  

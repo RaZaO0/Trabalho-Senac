@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="header">
+
+        <nav id="navbar">
+
+            <div class="logo">
+                <h3>Gallery</h3>
+                <p>luxe</p>
+            </div>
+
+            <a href="index.html">Início</a>
+            <a href="index.html#galeria">Galeria</a>
+            <a href="contato.html">Contato</a>
+            <a href="sobre.html">Sobre Nós</a>
+            <a href="login.html">Login</a>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section id="inicio">
+            <p class="pequeno" data-aos="fade-up">ENTRE EM CONTATO</p>
+
+            <h1 data-aos="fade-up" data-aos-delay="200">FALE<br>COM<br>A GENTE.</h1>
+
+            <p class="descricao" data-aos="fade-up" data-aos-delay="400">Tem alguma dúvida, sugestão ou quer saber mais sobre nossas peças? Estamos aqui para ajudar.</p>
+
+        </section>
+
+        <section id="contato">
+
+            <div class="informacoes">
+                <h2 data-aos="fade-right">Contato</h2>
+                <p data-aos="fade-right" data-aos-delay="200">Entre em contato conosco através dos canais abaixo ou envie uma mensagem pelo formulário.</p>
+
+                <div class="info" data-aos="fade-up" data-aos-delay="300">
+                    <h3>E-mail</h3>
+                    <p>contato@galleryluxe.com</p>
+                </div>
+
+                <div class="info" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Telefone</h3>
+                    <p>(35) 99999-9999</p>
+                </div>
+
+                <div class="info" data-aos="fade-up" data-aos-delay="500">
+                    <h3>Horário</h3>
+                    <p>Segunda a Sexta — 09:00 às 18:00</p>
+                </div>
+
+            </div>
+
+            <form id="form-contato" data-aos="fade-left" data-aos-duration="1200">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome"required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+
+                <label for="assunto">Assunto</label>
+                <input type="text" id="assunto" name="assunto" placeholder="Assunto da mensagem" required>
+
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem..."required></textarea>
+                <button type="submit">Enviar mensagem</button>
+            </form>
+
+        </section>
+
+        <section id="final">
+            <p data-aos="fade-up">GALLERY LUXE</p>
+            <h2 data-aos="fade-up" data-aos-delay="300">SEU ESTILO.<br>NOSSA CONEXÃO.</h2>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Gallery Luxe</p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
