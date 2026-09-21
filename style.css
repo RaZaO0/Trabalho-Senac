@@ -181,7 +181,7 @@ footer p {
 }
 
 .botao-filtro:hover {
-    text-shadow: 0 0 10px white;
+    text-shadow: 0 0 10px rgb(0, 193, 84);
     border: 0;
     font-size: 18px;
 }
@@ -220,7 +220,7 @@ footer p {
 }
 
 .caixa-produto:hover {
-    box-shadow: 0 15px 40px rgba(255,255,255,0.18);
+    box-shadow: 0 15px 40px rgba(0, 205, 96, 0.18);
     border: 0;
 }
 
