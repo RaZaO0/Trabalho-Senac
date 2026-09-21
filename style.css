@@ -1,4 +1,4 @@
-/* ===================== RESET / BASE ===================== */
+/* ==  === */
 
 * {
     scroll-behavior: smooth;
@@ -7,7 +7,7 @@
 body {
     background: linear-gradient(
         180deg,
-        rgb(36, 36, 36) 0%,
+        rgb(0, 79, 53) 0%,
         rgb(17, 17, 17) 25%,
         rgb(17, 17, 17) 100%
     );
@@ -55,7 +55,7 @@ footer p {
     font-size: 13px;
 }
 
-/* ===================== HEADER / HERO (index) ===================== */
+/* ====header */
 
 #header{
     gap: 70px;
