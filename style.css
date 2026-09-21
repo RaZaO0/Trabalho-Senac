@@ -7,7 +7,7 @@
 body {
     background: linear-gradient(
         180deg,
-        rgb(7, 7, 7) 0%,
+        rgb(36, 36, 36) 0%,
         rgb(17, 17, 17) 25%,
         rgb(17, 17, 17) 100%
     );
@@ -97,7 +97,7 @@ footer p {
     background-color: rgba(17, 17, 17, 0.697);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 0 0 15px 15px;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 10;
 }
@@ -186,7 +186,7 @@ footer p {
     font-size: 18px;
 }
 
-/* ===GALERIA == */
+/* ===galkeria == */
 
 .subtitulo {
     font-size: 70px;
@@ -239,7 +239,7 @@ footer p {
 }
 
 
-/* ===================== PÁGINA CONTATO ===================== */
+/* ======cntt==== */
 
 #inicio {
     min-height: 75vh;
@@ -517,26 +517,27 @@ footer p {
     border-top: 1px solid #222;
 }
 
-/* =======mobile============ */
+/* ==cel== */
 
 @media (max-width: 700px) {
+
+
 
     #header {
         padding: 20px;
     }
 
     #navbar {
-        width: 100%;
-        padding: 12px;
-        gap: 5px;
-        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
     }
 
     .logo {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
+        width: auto;
+        margin: 0;
+    } 
 
     .logo h3 {
         font-size: 22px;
@@ -549,14 +550,25 @@ footer p {
 
     .menu-mobile {
         display: flex;
+        position: relative;
+        z-index: 20;
     }
 
-    .links-navbar {
+.links-navbar {
         display: none;
-        width: 100%;
+        position: absolute;
+        top: 65px;
+        right: 0;
+        width: 180px;
         flex-direction: column;
         align-items: stretch;
-        margin-top: 15px;
+        gap: 5px;
+        padding: 10px;
+        background: rgba(17, 17, 17, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        z-index: 15;
     }
 
     .links-navbar.ativo {

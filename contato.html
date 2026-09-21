@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <header id="header">
+<body>
 
         <nav id="navbar">
 
@@ -18,15 +18,22 @@
                 <p>luxe</p>
             </div>
 
-            <a href="index.html">Início</a>
-            <a href="index.html#galeria">Galeria</a>
-            <a href="contato.html">Contato</a>
-            <a href="sobre.html">Sobre Nós</a>
-            <a href="login.html">Login</a>
+            <button class="menu-mobile" onclick="abrirMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="links-navbar">
+                <a href="index.html">Início</a>
+                <a href="index.html#galeria">Galeria</a>
+                <a href="contato.html">Contato</a>
+                <a href="sobre.html">Sobre Nós</a>
+                <a href="login.html">Login</a>
+            </div>
 
         </nav>
 
-    </header>
 
     <main>
 
@@ -35,7 +42,8 @@
 
             <h1 data-aos="fade-up" data-aos-delay="200">FALE<br>COM<br>A GENTE.</h1>
 
-            <p class="descricao" data-aos="fade-up" data-aos-delay="400">Tem alguma dúvida, sugestão ou quer saber mais sobre nossas peças? Estamos aqui para ajudar.</p>
+            <p class="descricao" data-aos="fade-up" data-aos-delay="400">Tem alguma dúvida, sugestão ou quer saber mais
+                sobre nossas peças? Estamos aqui para ajudar.</p>
 
         </section>
 
@@ -43,7 +51,8 @@
 
             <div class="informacoes">
                 <h2 data-aos="fade-right">Contato</h2>
-                <p data-aos="fade-right" data-aos-delay="200">Entre em contato conosco através dos canais abaixo ou envie uma mensagem pelo formulário.</p>
+                <p data-aos="fade-right" data-aos-delay="200">Entre em contato conosco através dos canais abaixo ou
+                    envie uma mensagem pelo formulário.</p>
 
                 <div class="info" data-aos="fade-up" data-aos-delay="300">
                     <h3>E-mail</h3>
@@ -64,7 +73,7 @@
 
             <form id="form-contato" data-aos="fade-left" data-aos-duration="1200">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome"required>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
 
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" placeholder="seu@email.com" required>
@@ -73,7 +82,7 @@
                 <input type="text" id="assunto" name="assunto" placeholder="Assunto da mensagem" required>
 
                 <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem..."required></textarea>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem..." required></textarea>
                 <button type="submit">Enviar mensagem</button>
             </form>
 
@@ -96,4 +105,5 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

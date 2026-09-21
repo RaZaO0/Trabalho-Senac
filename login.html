@@ -12,15 +12,15 @@
 
     <form id="caixa-login">
 
-        <h1>Login</h1>
+        <h1 class="text-[35px] text-center text-aliceblue mb-[30px] font-[Verdana,Geneva,Tahoma,sans-serif]">Login</h1>
 
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="email" class="block text-[14px] text-[rgba(233,233,233,0.75)] mb-2">E-mail:</label>
+        <input type="email" id="email" name="email" class="w-full bg-[rgb(19,19,19)] text-[rgb(219,219,219)] border border-white/10 rounded-[10px] mb-5 px-[15px] py-[13px]" required>
 
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
+        <label for="senha" class="block text-[14px] text-[rgba(233,233,233,0.75)] mb-2">Senha:</label>
+        <input type="password" id="senha" name="senha" class="w-full bg-[rgb(19,19,19)] text-[rgb(219,219,219)] border border-white/10 rounded-[10px] mb-5 px-[15px] py-[13px]" required>
 
-        <button type="submit">Entrar</button>
+        <button type="submit" class="button">Entrar</button>
 
         <a href="index.html">
         <p>Sair</p>
@@ -28,28 +28,29 @@
     </form>
 
     <section id="PainelAdmin" style="display: none;">
-        <form id="formProdutos">
+        <form id="formProdutos" class="flex flex-col gap-4">
 
-        <h1>Painel Adm</h1>
+        <h1 class="text-[35px] text-center text-aliceblue mb-[30px] font-[Verdana,Geneva,Tahoma,sans-serif]">Painel Adm</h1>
 
-        <label for="Nome">Digite o nome do produto: </label>
-        <input type="text" id="nome" name="nome" required>
+        <label for="Nome" class="block text-[14px] text-[rgba(233,233,233,0.75)] mb-2">Digite o nome do produto: </label>
+        <input type="text" id="nome" name="nome" class="w-full bg-[rgb(19,19,19)] text-[rgb(219,219,219)] border border-white/10 rounded-[10px] mb-5 px-[15px] py-[13px]" required>
 
-        <label for="categoria">Digite a categoria do produto: </label>
-        <input type="text" id="categoria" name="categoria" required>
+        <label for="categoria" class="block text-[14px] text-[rgba(233,233,233,0.75)] mb-2">Digite a categoria do produto: </label>
+        <input type="text" id="categoria" name="categoria" class="w-full bg-[rgb(19,19,19)] text-[rgb(219,219,219)] border border-white/10 rounded-[10px] mb-5 px-[15px] py-[13px]" required>
 
-        <label for="preco">Digite o valor: </label>
-        <input type="number" id="preco" name="preco" required>
+        <label for="preco" class="block text-[14px] text-[rgba(233,233,233,0.75)] mb-2">Digite o valor: </label>
+        <input type="number" id="preco" name="preco" class="w-full bg-[rgb(19,19,19)] text-[rgb(219,219,219)] border border-white/10 rounded-[10px] mb-5 px-[15px] py-[13px]" required>
 
-        <button type="submit">Cadastrar Produto</button>
+        <button type="submit" class="button">Cadastrar Produto</button>
 
         <a href="index.html">
-        <p>Sair</p>
+        <p class="m-0">Sair</p>
         </a>
 
         </form>
     </section>
 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
 </body>
 </html>

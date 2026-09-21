@@ -32,39 +32,8 @@ body {
     flex-direction: column;
 }
 
-h1 {
-    color: aliceblue;
-    text-align: center;
-    font-size: 35px;
-    margin-bottom: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 
-label {
-    color: rgba(233, 233, 233, 0.75);
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    background: rgb(19, 19, 19);
-    color: rgb(219, 219, 219);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    font-size: 15px;
-    margin-bottom: 20px;
-    outline: none;
-    transition: 0.5s;
-}
-
-input:focus {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgb(27, 27, 27);
-}
-
-button {
+.button {
     background: linear-gradient(70deg, rgb(19, 19, 19), rgb(46, 46, 46));
     border: 1px solid rgba(255, 255, 255, 0.068);
     color: aliceblue;
@@ -73,9 +42,10 @@ button {
     border-radius: 10px;
     cursor: pointer;
     transition: 0.5s;
+    margin-top:20px ;
 }
 
-button:hover {
+.button:hover {
     background: linear-gradient(70deg, rgb(58, 58, 58), rgb(107, 107, 107));
     border: 1px solid rgba(255, 255, 255, 0.253);
     box-shadow: 5px 5px 10px rgb(40, 40, 40);
@@ -101,6 +71,22 @@ button:hover {
     margin: 0;
 }
 
+#PainelAdmin a {
+    text-decoration: none;
+    color: rgba(233, 233, 233, 0.55);
+    text-align: center;
+    margin-top: 20px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#PainelAdmin a:hover {
+    color: rgb(231, 231, 231);
+    background: rgba(70, 70, 70, 0.1);
+}
+
+
 #PainelAdmin {
     width: 400px;
     padding: 35px;
@@ -110,10 +96,6 @@ button:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-#formProdutos {
-    display: flex;
-    flex-direction: column;
-}
 
 @media (max-width: 600px) {
     #caixa-login,

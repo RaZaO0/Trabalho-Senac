@@ -193,5 +193,9 @@ const filtrarPreco = (precoMax) => {
 }
 
 
+function abrirMenu() {
+    const menu = document.querySelector(".links-navbar");
 
+    menu.classList.toggle("ativo");
+}
  
