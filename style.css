@@ -607,21 +607,24 @@ footer p {
     }
 
     #produtos {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 25px;
+        justify-items: center;
     }
 
+
     .caixa-produto {
-        width: 100%;
+        width: 280px;
         padding: 10px;
+        margin: 0 auto;
     }
 
     .fotos {
-        width: 100%;
-        height: auto;
-        max-height: 500px;
+        width: 264px;
+        height: 330px;
         object-fit: cover;
     }
+
 
     .caixa-nome-preço {
         flex-direction: column;
