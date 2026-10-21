@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(
+        180deg,
+        rgb(7, 7, 7) 0%,
+        rgb(17, 17, 17) 25%,
+        rgb(17, 17, 17) 100%
+    );
+
+    color: rgb(219, 219, 219);
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#caixa-login {
+    width: 360px;
+    padding: 35px;
+    background: rgba(41, 41, 41, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+#form-cadastro {
+    width: 360px;
+    padding: 35px;
+    background: rgba(41, 41, 41, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.button {
+    background: linear-gradient(70deg, rgb(19, 19, 19), rgb(46, 46, 46));
+    border: 1px solid rgba(255, 255, 255, 0.068);
+    color: aliceblue;
+    font-size: 15px;
+    padding: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-top:20px ;
+}
+
+.button:hover {
+    background: linear-gradient(70deg, rgb(58, 58, 58), rgb(107, 107, 107));
+    border: 1px solid rgba(255, 255, 255, 0.253);
+    box-shadow: 5px 5px 10px rgb(40, 40, 40);
+}
+
+#caixa-login a {
+    text-decoration: none;
+    color: rgba(233, 233, 233, 0.55);
+    text-align: center;
+    margin-top: 20px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#caixa-login a:hover {
+    color: rgb(231, 231, 231);
+    background: rgba(70, 70, 70, 0.1);
+}
+
+
+#caixa-login a p {
+    margin: 0;
+}
+
+#PainelAdmin a {
+    text-decoration: none;
+    color: rgba(233, 233, 233, 0.55);
+    text-align: center;
+    margin-top: 20px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#PainelAdmin a:hover {
+    color: rgb(231, 231, 231);
+    background: rgba(70, 70, 70, 0.1);
+}
+
+
+#PainelAdmin {
+    width: 400px;
+    padding: 35px;
+    background: rgba(41, 41, 41, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+@media (max-width: 600px) {
+    #caixa-login,
+    #PainelAdmin {
+        width: 90%;
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
