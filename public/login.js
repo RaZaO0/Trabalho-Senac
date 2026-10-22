@@ -1,3 +1,4 @@
+console.log("JavaScript carregou!");
 const form_login = document.getElementById("caixa-login");
 
 form_login.addEventListener("submit", async (e) => {
@@ -18,11 +19,15 @@ form_login.addEventListener("submit", async (e) => {
             body: JSON.stringify(dados)
         })
 
+        const resultado = await resposta.json();
+
         if(!resposta.ok) {
-            throw new Error(erro)
+            throw new Error(resultado.erro)
         }
 
+        window.location.href = "/painel.html";
+
     } catch(erro) {
-        console.log(erro)
+        console.log(erro.message)
     }
 })

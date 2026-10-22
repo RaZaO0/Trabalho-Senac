@@ -14,14 +14,15 @@ formCadastro.addEventListener("submit", async (e) => {
     }
 
     try {
-        const resposta = await fetch("/api/auth/cadastro", {
+        const resposta = await fetch("/cadastro", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(dados)
         })
 
+        const resultado = await resposta.json()
         if(!resposta.ok) {
-            throw new Error(erro)
+            throw new Error(resultado.erro)
         }
 
         formCadastro.reset();
