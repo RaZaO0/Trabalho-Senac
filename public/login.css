@@ -107,6 +107,19 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+input {
+    width: 100%;
+    padding: 13px 15px;
+    background-color: #131313;
+    color: #dbdbdb;
+    border: 1px solid #333;
+    border-radius: 10px;
+    outline: none;
+    margin-bottom: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
 
 @media (max-width: 600px) {
     #caixa-login,

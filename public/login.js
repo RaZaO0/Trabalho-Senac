@@ -1,4 +1,3 @@
-console.log("JavaScript carregou!");
 const form_login = document.getElementById("caixa-login");
 
 form_login.addEventListener("submit", async (e) => {
@@ -28,6 +27,7 @@ form_login.addEventListener("submit", async (e) => {
         window.location.href = "/painel.html";
 
     } catch(erro) {
+        alert("Email ou Senha inválidos.")
         console.log(erro.message)
     }
 })

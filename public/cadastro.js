@@ -25,6 +25,7 @@ formCadastro.addEventListener("submit", async (e) => {
             throw new Error(resultado.erro)
         }
 
+        alert("Cadastro realizado com sucesso!")
         formCadastro.reset();
     }catch(erro) {
         alert(erro.message)

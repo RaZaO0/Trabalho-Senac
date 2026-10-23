@@ -85,7 +85,7 @@ class Gerenciador {
     exibir() {
         if (!listaProdutos) {
         return;
-    }
+    } 
         for(let i = 0; i < this.produtos.length; i++) {
             const produto = this.produtos[i];
             listaProdutos.innerHTML += `
@@ -152,8 +152,10 @@ formProdutos.addEventListener("submit", async (e) => {
             body: JSON.stringify(dados)
         })
 
+        const resultado = await resposta.json();
+        
         if(!resposta.ok) {
-            throw new Error(erro)
+            throw new Error(resultado.erro)
         } 
  
     objetoGerenciador.adicionaProduto(
@@ -184,37 +186,101 @@ caixaLogin.addEventListener("submit", (e) => {
   
  
  
-const mostrarFiltros = (event) => {
-    event.preventDefault();
-    const caixaFiltros = document.getElementById("caixa-filtros");
-    caixaFiltros.style.display = caixaFiltros.style.display === "flex" ? "none" : "flex";
-}
- 
-const filtrarPreco = (precoMax) => {
-    const produtos = [...document.querySelectorAll(".caixa-produto")];
 
-        if (precoMax === "todos") {
+const botaoFiltro = document.getElementById("botao-filtro");
+const caixaFiltros = document.getElementById("caixa-filtros");
+
+if (botaoFiltro && caixaFiltros) {
+    botaoFiltro.addEventListener("click", () => {
+        if (caixaFiltros.style.display === "flex") {
+            caixaFiltros.style.display = "none";
+        } else {
+            caixaFiltros.style.display = "flex";
+        }
+    });
+}
+
+document.querySelectorAll(".botao-filtro").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        const precoMax = botao.dataset.preco;
+        const produtos = document.querySelectorAll(".caixa-produto");
+
         produtos.forEach((produto) => {
-            produto.style.display = "block";
+            const preco = Number(produto.dataset.preco);
+
+            if (precoMax === "todos" || preco <= Number(precoMax)) {
+                produto.style.display = "";
+            } else {
+                produto.style.display = "none";
+            }
         });
 
-        return;
-    }
- 
-    const dentroDoFiltro = produtos.filter(
-        (produto) => Number(produto.dataset.preco) <= precoMax
-    );
-    const foraDoFiltro = produtos.filter(
-        (produto) => Number(produto.dataset.preco) > precoMax
-    );
- 
-    dentroDoFiltro.forEach((produto) => produto.style.display = "block");
-    foraDoFiltro.forEach((produto) => produto.style.display = "none");
-}
-
+        caixaFiltros.style.display = "none";
+    });
+});
 
 function abrirMenu() {
     const menu = document.querySelector(".links-navbar");
 
     menu.classList.toggle("ativo");
 }
+
+//isaque
+const botaoSair = document.getElementById("botaoSair");
+
+if (botaoSair) {
+    botaoSair.addEventListener("click", async () => {
+        try {
+            await fetch("/api/auth/logout", { method: "POST" });
+        } finally {
+            location.href = "index.html";
+        }
+    });
+}
+
+//isaque
+async function verificarLogin() {
+    if (window.location.pathname !== "/painel.html") {
+        return;
+    }
+
+    const resposta = await fetch("/api/auth/logado");
+
+    if (!resposta.ok) {
+        alert("Você precisa fazer login para acessar o painel!");
+        window.location.href = "/login.html";
+    }
+}
+
+async function mostrarQuantidadeProdutos() {
+    const elemento = document.getElementById("quantidadeProdutos");
+
+    if (!elemento) return;
+
+    try {
+        const resposta = await fetch("/api/quantidadeProdutos");
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao buscar quantidade de produtos.");
+        }
+
+        const dados = await resposta.json();
+
+        elemento.textContent = dados.quantidade;
+
+    } catch (erro) {
+        console.error(erro);
+        elemento.textContent = "Erro ao carregar";
+    }
+}
+async function iniciarPainel() {
+    if (window.location.pathname === "/painel.html") {
+        await verificarLogin();
+
+        if (window.location.pathname === "/painel.html") {
+            await mostrarQuantidadeProdutos();
+        }
+    }
+}
+
+iniciarPainel();

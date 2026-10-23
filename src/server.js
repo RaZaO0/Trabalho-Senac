@@ -10,7 +10,6 @@ import "dotenv/config";
 const app = express();
 
 app.use(express.json());
-app.use(express.static("public"));
 app.use(cookieParser());
 app.use(helmet());
 
@@ -113,7 +112,7 @@ app.post("/api/auth/login", limiteLogin, async (req, res) => {
 })
 
 
-//Verificar abaixo
+//isaque
 function requerLogin (req, res, next) {
     const token = req.cookies.acess_token;
     if (!token) {
@@ -146,26 +145,50 @@ app.get("/api/auth/logado", requerLogin, async (req, res) => {
     })};
 });
 
-app.post("/api/cadastrarProduto", requerLogin, async (req, res) => {
-    const { nome, descricao, preco } = req.body;
 
-    if (!nome || preco == null || descricao == null) {
+// isaque
+app.post("/api/auth/logout", (req,res) => {
+    res.clearCookie("acess_token", opcoesCookies);
+    res.json ({ message: "Logout efetuado."})
+})
+
+app.post("/api/cadastrarProduto", requerLogin, async (req, res) => {
+    const { nome, categoria, preco } = req.body;
+
+    if (!nome || !categoria || preco == null || preco === "") {
         return res.status(400).json({
             error: "Nome, preco e descricao sao obrigatorios" })
         }
             
-    const [resultado] = await conexao.query(
-        `INSERT INTO itens (usuario_id, nome, preco, descricao)
-         VALUES (?, ?, ?, ?)`,
-        [req.idUsuario, nome, preco, descricao]
+    const [resultado] = await configBanco.execute(
+        `INSERT INTO Produtos (nome_produto, categoria, valor)
+         VALUES (?, ?, ?)`,
+        [nome, categoria, preco]
     );
  
     res.status(201).json({
-        mensagem: "Item cadastrado com sucesso!",
+        mensagem: "Item cadastrado com sucesso!", 
         id: resultado.insertId
     })
 });    
 
+// Contar produtos cadastrados
+app.get("/api/quantidadeProdutos", requerLogin, async (req, res) => {
+    try {
+        const [resultado] = await configBanco.execute(
+            "SELECT COUNT(*) AS quantidade FROM Produtos"
+        );
+
+        res.json({
+            quantidade: resultado[0].quantidade
+        });
+
+    } catch (erro) {
+        res.status(500).json({
+            erro: "Erro ao contar produtos."
+        });
+    }
+});
 
 async function criarUsuario(email, senhaHash) {
     const [resultado] = await configBanco.execute(
@@ -198,6 +221,10 @@ async function buscarUsuarioID(idUsuario) {
 }
 
 
+
+app.get("/painel.html", requerLogin, (req, res) => {
+    res.sendFile(process.cwd() + "/public/painel.html");
+});
 
 app.use(express.static("public"));
 
