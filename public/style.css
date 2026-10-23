@@ -329,8 +329,6 @@ footer p {
     display: flex;
     flex-direction: column;
     padding: 35px;
-    background: rgba(41, 41, 41, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 15px;
 }
 
@@ -481,7 +479,7 @@ footer p {
 .valores-gallery {
     margin: 80px auto;
     background: #040404;
-    color: #e4e4e4;
+    color: #000;
     padding: 100px 8%;
     width: 85%;
     border-radius: 20px;
