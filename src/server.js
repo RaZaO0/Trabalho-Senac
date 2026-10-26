@@ -13,6 +13,18 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
 
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            scriptSrc: [
+                "'self'",
+                "https://cdn.jsdelivr.net",
+                "https://unpkg.com"
+            ]
+        }
+    }
+}));
+
 
 const configBanco = mysql.createPool({
     host: process.env.DB_HOST,
