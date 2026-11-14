@@ -6,12 +6,14 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import "dotenv/config";
+import multer from "multer";
+// preciso utilizar 'npm install multer', ele salva 
 
 const app = express();
+const upload = multer({ dest: "public/uploads/" });
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(helmet());
 
 app.use(helmet({
     contentSecurityPolicy: {
@@ -33,6 +35,7 @@ const configBanco = mysql.createPool({
     password: "",
     database: process.env.DB_NAME
 });
+//IMPORTANTE   'ALTER TABLE Produtos ADD imagem VARCHAR(255);'   preciso utilizar isso no banco de dados 
 
 
 //verificar tudo a baixo ate o próximo  //
@@ -108,12 +111,10 @@ app.post("/api/auth/login", limiteLogin, async (req, res) => {
         }
 
         const senhaCorreta = await bcrypt.compare(senha,usuarioNovo.senha);
-    
 
         if(!senhaCorreta) {
             return res.status(401).json({error: "Email ou senha inválidos."})
         }
-
 
         login(res, usuarioNovo)
         res.json({usuarioNovo: {id: usuarioNovo.id_usuario, email: usuarioNovo.email}})
@@ -140,7 +141,7 @@ function requerLogin (req, res, next) {
 }
 
 
-//criar o "buscarUsuarioID"
+
 app.get("/api/auth/logado", requerLogin, async (req, res) => {
     try {
         const usuario = await buscarUsuarioID(req.idUsuario);
@@ -164,27 +165,21 @@ app.post("/api/auth/logout", (req,res) => {
     res.json ({ message: "Logout efetuado."})
 })
 
-app.post("/api/cadastrarProduto", requerLogin, async (req, res) => {
+// verificar tabela no banco de dados
+app.post("/api/cadastrarProduto", requerLogin, upload.single("imagem"), async (req, res) => {
     const { nome, categoria, preco } = req.body;
 
-    if (!nome || !categoria || preco == null || preco === "") {
-        return res.status(400).json({
-            error: "Nome, preco e descricao sao obrigatorios" })
-        }
-            
-    const [resultado] = await configBanco.execute(
-        `INSERT INTO Produtos (nome_produto, categoria, valor)
-         VALUES (?, ?, ?)`,
-        [nome, categoria, preco]
-    );
- 
-    res.status(201).json({
-        mensagem: "Item cadastrado com sucesso!", 
-        id: resultado.insertId
-    })
-});    
+    const imagem = req.file ? "/uploads/" + req.file.filename : null;
 
-// Contar produtos cadastrados
+    const [resultado] = await configBanco.execute(
+        "INSERT INTO Produtos (nome_produto, categoria, valor, imagem) VALUES (?, ?, ?, ?)",
+        [nome, categoria, preco, imagem]
+    );
+
+    res.status(201).json({ mensagem: "Produto cadastrado!", id: resultado.insertId });
+});
+
+
 app.get("/api/quantidadeProdutos", requerLogin, async (req, res) => {
     try {
         const [resultado] = await configBanco.execute(
@@ -202,6 +197,24 @@ app.get("/api/quantidadeProdutos", requerLogin, async (req, res) => {
     }
 });
 
+
+app.get("/api/produtos", requerLogin, async (req, res) => {
+    try {
+        const [produtos] = await configBanco.execute(
+            "SELECT nome_produto AS nome, categoria, valor AS preco, imagem FROM Produtos"
+        );
+
+        res.json(produtos);
+
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).json({
+            erro: "Erro ao buscar produtos."
+        });
+    }
+});
+
+
 async function criarUsuario(email, senhaHash) {
     const [resultado] = await configBanco.execute(
         "INSERT INTO cadastro (email, senha) VALUES (?, ?)",
@@ -214,11 +227,25 @@ async function criarUsuario(email, senhaHash) {
     };
 }
 
+// preciso verificar a tabela no banco de dados para ver se bate
+async function iniciar( ) {
+    try {
+        const [usuario] = await configBanco.execute("SELECT id_usuario FROM cadastro WHERE email = ?", [process.env.ADMIN_EMAIL])
+        if (usuario.length === 0) {
+            const senhaHash = await bcrypt.hash(process.env.ADMIN_SENHA, 10)
+            await configBanco.execute ("INSERT INTO cadastro (email, senha) VALUES (?,?) ", [process.env.ADMIN_EMAIL, senhaHash]);
+            console.log("Admin criado")
+        } 
+        } catch (erro) {
+            console.log("Não foi possível conectar com o banco de dados")
+    }
+}
+
 async function buscarEmail(email) {
     const [dadosEmail] = await configBanco.execute(
         "SELECT * FROM cadastro WHERE email = ?",
         [email]
-    );
+    ); 
 
     return dadosEmail[0]
 }
@@ -241,5 +268,6 @@ app.get("/painel.html", requerLogin, (req, res) => {
 app.use(express.static("public"));
 
 app.listen (PORT, () => {
+    iniciar()
     console.log("Servidor rodando")
 })

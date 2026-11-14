@@ -36,11 +36,12 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
 }
 
 class Produtos {
-    constructor(id, nome, categoria, preco){
-    this.id = id;
-    this.nome = nome;
-    this.categoria = categoria;
-    this.preco = preco
+    constructor(id, nome, categoria, preco, imagem) {
+        this.id = id;
+        this.nome = nome;
+        this.categoria = categoria;
+        this.preco = preco;
+        this.imagem = imagem;
     }
 }
  
@@ -63,12 +64,13 @@ class Gerenciador {
         this.proximoIdProduto = 1;
     }
  
-    adicionaProduto(nome, categoria, preco) {
+    adicionaProduto(nome, categoria, preco, imagem) {
         const novoProduto = new Produtos(
             this.proximoIdProduto,
             nome,
             categoria,
-            preco
+            preco,
+            imagem
         );
 
         this.produtos.push(novoProduto);
@@ -79,7 +81,6 @@ class Gerenciador {
             "produtos",
             JSON.stringify(this.produtos)
         );
-        
     }
  
     exibir() {
@@ -92,7 +93,7 @@ class Gerenciador {
             <div class="caixa-produto" data-preco="${produto.preco}">
 
                 <div>
-                    <img src="fotos/produto.jpg" alt="" class="fotos">
+                    <img src="${produto.imagem}" alt="${produto.nome}" class="fotos">
                 </div>
 
                 <div class="caixa-nome-preço">
@@ -132,43 +133,38 @@ if (produtosSalvos) {
 const formProdutos = document.getElementById("formProdutos")
 
 if (formProdutos) {
-formProdutos.addEventListener("submit", async (e) => {
-    e.preventDefault();
- 
-    const nomeProduto = document.getElementById("nome").value;
-    const categoriaProduto = document.getElementById("categoria").value;
-    const precoProduto = document.getElementById("preco").value;
+    formProdutos.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const dados = {
-        nome: nomeProduto,
-        categoria: categoriaProduto,
-        preco: precoProduto
-    }
+        const nomeProduto = document.getElementById("nome").value;
+        const categoriaProduto = document.getElementById("categoria").value;
+        const precoProduto = document.getElementById("preco").value;
+        const arquivoImagem = document.getElementById("imagem").files[0];
 
-    try {
-        const resposta = await fetch("/api/cadastrarProduto", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(dados)
-        })
-
-        const resultado = await resposta.json();
-        
-        if(!resposta.ok) {
-            throw new Error(resultado.erro)
-        } 
- 
-    objetoGerenciador.adicionaProduto(
-        nomeProduto,
-        categoriaProduto,
-        precoProduto
-    );
-    alert("Produto cadastrado com sucesso!");
-    formProdutos.reset()
-} catch(erro) {
-    alert(erro)
-}
-})
+        if (!arquivoImagem) {
+            alert("Escolha uma imagem para o produto!");
+            return;
+        }
+        const dados = new FormData();
+        dados.append("nome", nomeProduto);
+        dados.append("categoria", categoriaProduto);
+        dados.append("preco", precoProduto);
+        dados.append("imagem", arquivoImagem);
+        try {
+            const resposta = await fetch("/api/cadastrarProduto", {
+                method: "POST",
+                body: dados
+            });
+            const resultado = await resposta.json();
+            if (!resposta.ok) {
+                throw new Error(resultado.erro || "Erro ao cadastrar produto.");
+            }
+            alert("Produto cadastrado com sucesso!");
+            formProdutos.reset();
+        } catch (erro) {
+            alert(erro.message);
+        }
+    });
 }
  
  
@@ -251,6 +247,32 @@ async function verificarLogin() {
         window.location.href = "/login.html";
     }
 }
+
+
+async function gerarGraficos() {
+    const resposta = await fetch("/api/produtos");
+
+    const produtos = await resposta.json();
+
+    const resultado = await fetch("http://127.0.0.1:5001/graficos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ produtos: produtos })
+    });
+
+    if (!resultado.ok) {
+        alert("Erro ao gerar gráficos");
+        return;
+    }
+
+    const imagem = await resultado.blob();
+
+    document.getElementById("graficos").src =
+        URL.createObjectURL(imagem);
+}
+
 
 async function mostrarQuantidadeProdutos() {
     const elemento = document.getElementById("quantidadeProdutos");
