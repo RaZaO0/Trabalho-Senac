@@ -198,7 +198,7 @@ app.get("/api/quantidadeProdutos", requerLogin, async (req, res) => {
 });
 
 
-app.get("/api/produtos", requerLogin, async (req, res) => {
+app.get("/api/produtos", async (req, res) => {
     try {
         const [produtos] = await configBanco.execute(
             "SELECT nome_produto AS nome, categoria, valor AS preco, imagem FROM Produtos"
