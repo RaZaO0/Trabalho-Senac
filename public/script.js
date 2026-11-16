@@ -94,16 +94,16 @@ class Gerenciador {
             <div class="caixa-produto" data-preco="${produto.preco}">
 
                 <div>
-                    <img src="${produto.imagem}" alt="${produto.nome}" class="fotos">
+                    <img src="${produto.imagem}" alt="${produto.imagem}" class="fotos">
                 </div>
 
                 <div class="caixa-nome-preço">
                     <h4 class="nome-produto">
-                        ${produto.nome}
+                        ${produto.nome_produto}
                     </h4>
 
                     <h4 class="preco-produto">
-                        R$ ${Number(produto.preco).toFixed(2)}
+                        R$ ${Number(produto.valor).toFixed(2)}
                     </h4>
                 </div>
 
@@ -250,27 +250,13 @@ async function verificarLogin() {
   }
 }
 
-async function gerarGraficos() {
-  const resposta = await fetch("/api/produtos");
+const botaoGraficos = document.getElementById("botaoGraficos");
+const graficos = document.getElementById("graficos");
 
-  const produtos = await resposta.json();
-
-  const resultado = await fetch("http://127.0.0.1:5001/graficos", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ produtos: produtos }),
-  });
-
-  if (!resultado.ok) {
-    alert("Erro ao gerar gráficos");
-    return;
-  }
-
-  const imagem = await resultado.blob();
-
-  document.getElementById("graficos").src = URL.createObjectURL(imagem);
+if (botaoGraficos && graficos) {
+    botaoGraficos.addEventListener("click", () => {
+        graficos.src = "/api/graficos?atualizar=" + Date.now();
+    });
 }
 
 async function mostrarQuantidadeProdutos() {
