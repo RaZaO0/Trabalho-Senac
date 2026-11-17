@@ -8,7 +8,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 app = Flask(__name__)
-
+ 
 @app.post("/graficos")
 def gerar_graficos():
     dados = request.get_json(silent=True) or {}

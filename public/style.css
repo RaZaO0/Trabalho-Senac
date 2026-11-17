@@ -531,6 +531,45 @@ footer p {
     letter-spacing: -5px;
 }
 
+/*========= carrossel =====*/
+
+.carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 95%;
+    margin: 80px auto;
+    
+}
+
+.carrossel img {
+    width: 90%;
+    height: 700px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carrossel button {
+    background: rgba(20, 20, 20, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    width: 60px;
+    height: 60px;
+    font-size: 35px;
+    cursor: pointer;
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+.carrossel button:hover {
+    background: rgb(121, 0, 0);
+    border-color: rgb(121, 0, 0);
+}
+
+
 /* ==cel== */
 
 @media (max-width: 700px) {

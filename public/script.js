@@ -35,6 +35,44 @@ if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
   }
 }
 
+var fotos = [
+    "imagensC/img1.png",
+    "imagensC/img2.png",
+    "imagensC/img3.png",
+    "imagensC/img4.png"
+
+];
+
+var atual = 0;
+const foto = document.getElementById("foto");
+const botaoAvancar = document.getElementById("avancar");
+const botaoVoltar = document.getElementById("voltar");
+
+function mostrar() {
+    if (!foto) return;
+    foto.src = fotos[atual];
+}
+
+function avancar() {
+    atual++;
+    if (atual == fotos.length) {atual = 0;}
+    mostrar();
+}
+
+function voltar() {
+    atual--;
+    if (atual < 0) {atual = fotos.length - 1;}
+    mostrar();
+}
+
+if (botaoAvancar && botaoVoltar) {
+    botaoAvancar.addEventListener("click", avancar);
+    botaoVoltar.addEventListener("click", voltar);
+}
+mostrar();
+
+
+
 class Produtos {
   constructor(id, nome, categoria, preco, imagem) {
     this.id = id;
@@ -222,6 +260,8 @@ function abrirMenu() {
 
   menu.classList.toggle("ativo");
 }
+
+
 
 //isaque
 const botaoSair = document.getElementById("botaoSair");
