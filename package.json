@@ -8,7 +8,8 @@
     "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.5.0",
-    "mysql2": "^3.24.6"
+    "mysql2": "^3.24.6",
+    "python-dotenv": "^0.0.1-security"
   },
   "name": "trabalho-senac-git",
   "version": "1.0.0",

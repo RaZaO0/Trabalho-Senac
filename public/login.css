@@ -126,12 +126,14 @@ label {
     margin-bottom: 5px;
 }
 
-.painel-graficos {
-    width: 100%;
-    padding: 25px;
-    background: rgb(28, 28, 28);
-    border: 1px solid #383838;
-    border-radius: 12px;
+.container-painel {
+    width: 95%;
+    max-width: 1600px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    align-items: start;
 }
 
 .painel-graficos h2 {
@@ -142,7 +144,7 @@ label {
 .painel-graficos img {
     display: block;
     width: 100%;
-    max-width: 450px;
+    max-width: 100%;
     height: auto;
     margin: 20px auto;
 }

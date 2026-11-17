@@ -23,16 +23,29 @@ def gerar_graficos():
     categorias = Counter(
         item.get("categoria", "Não informado") for item in produtos
     )
-    fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+    valor = Counter(
+        item.get("valor", "nao informado") for item in produtos
+    )
+
+    #------------------01------------------
+    fig, axs = plt.subplots(1, 3, figsize=(18, 5))
     axs[0].bar(nome_produto.keys(), nome_produto.values())
     axs[0].set_title("Produtos")
     axs[0].set_ylabel("Quantidade")
     axs[0].tick_params(axis="x", rotation=30)
 
+    #----------------02---------------------
     axs[1].bar(categorias.keys(), categorias.values())
     axs[1].set_title("Categorias")
     axs[1].set_ylabel("Quantidade")
     axs[1].tick_params(axis="x", rotation=30)
+
+    #----------------03--------------------
+    axs[2].bar(valor.keys(), valor.values())
+    axs[2].set_title("valor")
+    axs[2].set_ylabel("Quantidade")
+    axs[2].tick_params(axis="x", rotation=30)
+ 
 
     fig.tight_layout()
     buffer = BytesIO()
